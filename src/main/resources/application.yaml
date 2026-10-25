@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: wallet-service
+
+  datasource:
+    url: jdbc:h2:file:./data/walletdb
+    driver-class-name: org.h2.Driver
+    username: wallet
+    password: wallet
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+jwt:
+  secret: cxVQsg8RIywHMbUN/lRPw+uJor8Xt7pOb4Lzk9xHZBU=
+  expiration-ms: 900000
+
+server:
+  port: 8081
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: when_authorized
+      probes:
+        enabled: true
+    prometheus:
+      access: read-only
+  info:
+    env:
+      enabled: true
+info:
+  app:
+    name: wallet-service
+    description: Wallet and Ledger Service
+    version: 1.0.0
